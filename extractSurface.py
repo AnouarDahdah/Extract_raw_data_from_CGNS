@@ -3,35 +3,32 @@ import numpy as np
 import time
 
 def extract_and_save_data(file_path, output_file):
-    # Start the timer
-    start_time = time.time()
-
     # Open the CGNS file
+    start_time = time.time()
     with h5py.File(file_path, 'r') as cgns_file:
         # Verify paths
         print("Verifying paths...")
         list_all_paths(cgns_file)
         
         # Define the paths to the required data
-        meanVxMonitorPath = "/Base/Air/Solution00001/meanVxMonitor/ data"
-        meanVyMonitorPath = "/Base/Air/Solution00001/meanVyMonitor/ data"
-        meanVzMonitorPath = "/Base/Air/Solution00001/meanVzMonitor/ data"
+        X = "/Base/Air Body/GridCoordinates/CoordinateX/ data"
+        Y = "/Base/Air Body/GridCoordinates/CoordinateY/ data"
+        Z = "/Base/Air Body/GridCoordinates/CoordinateZ/ data"
 
         # Check if paths exist before accessing
-        if meanVxMonitorPath in cgns_file and meanVyMonitorPath in cgns_file and meanVzMonitorPath in cgns_file:
+        if X in cgns_file and Y in cgns_file and Z in cgns_file:
             # Extract data from the CGNS file
-            meanVxMonitor_data = np.array(cgns_file[meanVxMonitorPath])
-            meanVyMonitor_data = np.array(cgns_file[meanVyMonitorPath])
-            meanVzMonitor_data = np.array(cgns_file[meanVzMonitorPath])
+            X = np.array(cgns_file[X])
+            Y = np.array(cgns_file[Y])
+            Z = np.array(cgns_file[Z])
 
             # Save the data to a CSV file
-            np.savetxt(output_file, np.column_stack((meanVxMonitor_data, meanVyMonitor_data, meanVzMonitor_data)),
-                       delimiter=',', header='meanVxMonitor,meanVyMonitor,meanVzMonitor', comments='')
+            np.savetxt(output_file, np.column_stack((X, Y, Z)),
+                       delimiter=',', header='X,Y,Z', comments='')
             print(f"Data saved to '{output_file}'.")
         else:
             print("One or more specified paths do not exist in the CGNS file.")
 
-    # Stop the timer and print the time taken
     end_time = time.time()
     print(f"Compilation running time: {end_time - start_time} seconds")
 
@@ -45,6 +42,8 @@ def list_all_paths(group, path=''):
             list_all_paths(item, item_path)
 
 if __name__ == "__main__":
-    file_path = "/mnt/c/users/DELL/Downloads/ID2_Volume.cgns"
-    output_file = "monitor_data.csv"
+    
+    file_path= "/home/adahdah/ID2_Surface20.cgns"
+
+    output_file = "coordinate_datad20.csv"
     extract_and_save_data(file_path, output_file)
