@@ -12,7 +12,11 @@ def read_csv_to_array(filename):
 file_dir = '/home/adahdah/'
 file_pattern = 'coordinate_data_part{}.csv'
 
+<<<<<<< HEAD
 for i in range(1, 22):
+=======
+for i in range(1, 21):
+>>>>>>> 6be856d286fc8ffc14c15663bd6353c128f54fa9
     # Generate the filename
     filename = os.path.join(file_dir, file_pattern.format(i))
     
@@ -30,10 +34,15 @@ for i in range(1, 22):
     ffd.box_origin = bbox_min
     
     # Apply some transformations
+<<<<<<< HEAD
     ffd.array_mu_x[1, 1, 1] = bbox_length[0] / 1  # Example transformation
     ffd.array_mu_y[1, 1, 1] = bbox_length[1] / 1  # Example transformation
     ffd.array_mu_z[1, 1, 1] = bbox_length[2] / 1  # Example transformation
     
+=======
+    ffd.array_mu_x[1, 1, 1] = bbox_length[0] / 0.2  # Example transformation
+    ffd.array_mu_z[1, 1, 1] = bbox_length[2] / 20  # Example transformation
+>>>>>>> 6be856d286fc8ffc14c15663bd6353c128f54fa9
     
     # Apply FFD transformations
     new_mesh = ffd(mesh)

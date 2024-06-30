@@ -29,7 +29,12 @@ def split_and_save_csv_by_x(csv_file, output_file_prefix):
 
 if __name__ == "__main__":
     # Example usage
+<<<<<<< HEAD
     csv_file = "coordinate_datad2.csv"  # Replace with your CSV file path
     output_file_prefix = "coordinate_datad2"
+=======
+    csv_file = "coordinate_data.csv"  # Replace with your CSV file path
+    output_file_prefix = "coordinate_data"
+>>>>>>> 6be856d286fc8ffc14c15663bd6353c128f54fa9
     
     split_and_save_csv_by_x(csv_file, output_file_prefix)

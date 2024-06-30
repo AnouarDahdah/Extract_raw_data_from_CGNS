@@ -43,7 +43,13 @@ def list_all_paths(group, path=''):
 
 if __name__ == "__main__":
     
+<<<<<<< HEAD
     file_path= "/home/adahdah/ID2_Surface20.cgns"
 
     output_file = "coordinate_datad20.csv"
+=======
+    file_path= "/home/adahdah/ID2_Surface19.cgns"
+
+    output_file = "coordinate_data.csv"
+>>>>>>> 6be856d286fc8ffc14c15663bd6353c128f54fa9
     extract_and_save_data(file_path, output_file)
